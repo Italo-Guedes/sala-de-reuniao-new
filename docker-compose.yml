@@ -2,7 +2,7 @@
 version: "3"
 services:
   web:
-    image: ${DOCKER_IMAGE_NAME-startkit}
+    image: ${DOCKER_IMAGE_NAME-salareuniao}
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -34,7 +34,7 @@ services:
     stdin_open: true
     container_name: "web"
   yarn:
-    image: ${DOCKER_IMAGE_NAME-startkit}
+    image: ${DOCKER_IMAGE_NAME-salareuniao}
     command: "./scripts/start_webpack_dev.sh"
     volumes:
       - .:/rdmapps:cached
@@ -49,7 +49,7 @@ services:
       WEBPACKER_DEV_SERVER_PORT: 3001
       WEBPACKER_DEV_SERVER_PUBLIC: 0.0.0.0:3001 # Hot Reload só funciona com o 0.0.0.0
   sidekiq:
-    image: ${DOCKER_IMAGE_NAME-startkit}
+    image: ${DOCKER_IMAGE_NAME-salareuniao}
     command: ["./scripts/wait-for-it.sh", "db:5432", "--", "bundle", "exec", "sidekiq", "-c", "6", "-q", "default", "-q", "mailers", "-q", "push_notifications", "-q", "active_storage_analysis", "-q", "active_storage_purge"]
     volumes:
       - .:/rdmapps:cached

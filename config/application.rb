@@ -20,7 +20,7 @@ module Rdmapps
 
     # rails will fallback to en, no matter what is set as config.i18n.default_locale
     config.i18n.fallbacks = %w[pt-BR]
-    config.i18n.available_locales = %w[pt-BR en]
+    config.i18n.available_locales = %w[pt-BR]
 
     # Disable default test files
     config.generators.system_tests = nil
