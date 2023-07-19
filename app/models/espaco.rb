@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
-# Espaco model
+# == Schema Information
+#
+# Table name: espacos
+#
+#  id         :bigint           not null, primary key
+#  descricao  :text
+#  nome       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class Espaco < ApplicationRecord
   include PgSearch::Model
   has_paper_trail

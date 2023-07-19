@@ -1,8 +1,19 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: reservas
+#
+#  id               :bigint           not null, primary key
+#  data_hora_inicio :datetime
+#  descricao        :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  espaco_id        :bigint           not null
+#
 # Reserva model
 class Reserva < ApplicationRecord
-  belongs_to :sala, required: true
+  belongs_to :espaco, required: true
   include PgSearch::Model
   has_paper_trail
 

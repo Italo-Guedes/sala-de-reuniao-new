@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_28_064019) do
+ActiveRecord::Schema.define(version: 2023_07_19_185951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -56,6 +56,13 @@ ActiveRecord::Schema.define(version: 2022_02_28_064019) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "espacos", force: :cascade do |t|
+    t.string "nome"
+    t.text "descricao"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "global_settings", force: :cascade do |t|
     t.string "page_title", default: "Rdmapps"
     t.string "page_subtitle", default: "startkit"
@@ -79,6 +86,15 @@ ActiveRecord::Schema.define(version: 2022_02_28_064019) do
     t.datetime "updated_at", null: false
     t.index ["subject_type", "subject_id"], name: "index_notifications_on_subject_type_and_subject_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "reservas", force: :cascade do |t|
+    t.bigint "espaco_id", null: false
+    t.datetime "data_hora_inicio"
+    t.text "descricao"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["espaco_id"], name: "index_reservas_on_espaco_id"
   end
 
   create_table "roles", id: :serial, force: :cascade do |t|
@@ -141,4 +157,5 @@ ActiveRecord::Schema.define(version: 2022_02_28_064019) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "reservas", "espacos"
 end
