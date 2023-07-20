@@ -26,7 +26,6 @@ class Reserva < ApplicationRecord
   end
 
 
-
   def to_s
     super
   end
