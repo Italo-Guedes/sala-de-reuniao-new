@@ -17,6 +17,16 @@ class Reserva < ApplicationRecord
   include PgSearch::Model
   has_paper_trail
 
+  validate :horario_disponivel
+
+  def horario_disponivel
+    if self.espaco.reservas.where("data_hora_inicio = ?", self.data_hora_inicio).where.not(id :self.id).exists?
+      errors.add(:data_hora_inicio, "já está ocupada.")
+    end
+  end
+
+
+
   def to_s
     super
   end

@@ -11,6 +11,7 @@
 #  updated_at :datetime         not null
 #
 class Espaco < ApplicationRecord
+  has_many :reservas, dependent: :destroy
   include PgSearch::Model
   has_paper_trail
 
