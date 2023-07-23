@@ -2,16 +2,18 @@
 
 # == Schema Information
 #
-# Table name: espacos
+# Table name: reservations
 #
-#  id         :bigint           not null, primary key
-#  descricao  :text
-#  nome       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :bigint           not null, primary key
+#  date_start  :datetime
+#  description :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  space_id    :bigint           not null
 #
-class Espaco < ApplicationRecord
-  has_many :reservas, dependent: :destroy
+# Reservation model
+class Reservation < ApplicationRecord
+  belongs_to :space, required: true
   include PgSearch::Model
   has_paper_trail
 
@@ -29,7 +31,7 @@ class Espaco < ApplicationRecord
 
   pg_search_scope(
     :full_search,
-    against: %i[nome descricao],
+    against: %i[description],
     associated_against: {}, # relation: %i[f1, f2], another: %i[f1, f2]
     using: { tsearch: { prefix: true } },
     ignoring: :accents

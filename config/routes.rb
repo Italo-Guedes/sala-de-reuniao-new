@@ -1,17 +1,8 @@
 # frozen_string_literal: true
 
-Rails.application.routes.draw do
-  resources :espacos
-  resources :reservas
-
-  # get 'reservas/index'
-  # get 'reservas/show'
-  # get 'reservas/new'
-  # get 'reservas/edit'
-  # get 'espacos/index'
-  # get 'espacos/show'
-  # get 'espacos/new'
-  # get 'espacos/edit'
+Rails.application.routes.draw do  
+  resources :reservations
+  resources :spaces
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
 

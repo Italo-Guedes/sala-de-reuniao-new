@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_19_185951) do
+ActiveRecord::Schema.define(version: 2023_07_23_153212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -97,6 +97,15 @@ ActiveRecord::Schema.define(version: 2023_07_19_185951) do
     t.index ["espaco_id"], name: "index_reservas_on_espaco_id"
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "space_id", null: false
+    t.datetime "date_start"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["space_id"], name: "index_reservations_on_space_id"
+  end
+
   create_table "roles", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -105,6 +114,13 @@ ActiveRecord::Schema.define(version: 2023_07_19_185951) do
     t.datetime "updated_at"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
+  end
+
+  create_table "spaces", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -158,4 +174,5 @@ ActiveRecord::Schema.define(version: 2023_07_19_185951) do
   add_foreign_key "comments", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "reservas", "espacos"
+  add_foreign_key "reservations", "spaces"
 end

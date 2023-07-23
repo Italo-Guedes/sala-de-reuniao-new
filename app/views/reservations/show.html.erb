@@ -1,0 +1,40 @@
+<header class="content__title">
+  <h1>
+    <%= t('helpers.submit.general.show', model: t('activerecord.models.reservation.one')) %>
+  </h1>
+
+  <div class="actions">
+    <%= link_to '', (controller_name == "versions" ? index_versions_path(model_name: "reservations") : reservations_path), title: t('activerecord.link.back_to_list'), class: 'actions__item zmdi zmdi-arrow-left' %>
+    <%= link_to '', '', title: t('activerecord.link.refresh'), class: 'actions__item zmdi zmdi-refresh-alt' %>
+    <%= link_to '', edit_reservation_path(@reservation), title: t('activerecord.link.edit'), class: 'actions__item zmdi zmdi-edit' if can?(:edit, @reservation) && controller_name != 'versions' %>
+  </div>
+</header>
+<div class="card">
+  <div class="card-body card-padding record-show">
+    <div class="row">
+        <div class="col-12">
+          <label class="fg-label"><%= t('activerecord.attributes.reservation.space') %></label><br/>&nbsp;
+          <%= @reservation.space %>
+        </div>
+        <div class="col-12">
+          <label class="fg-label"><%= t('activerecord.attributes.reservation.date_start') %></label><br/>&nbsp;
+          <%= @reservation.date_start %>
+        </div>
+        <div class="col-12">
+          <label class="fg-label"><%= t('activerecord.attributes.reservation.description') %></label><br/>&nbsp;
+          <%= @reservation.description %>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="fg-label"><%= t('activerecord.attributes.reservation.created_at') %></label><br/>&nbsp;
+        <%= @reservation.created_at %>
+      </div>
+      <div class="col-sm-6">
+        <label class="fg-label"><%= t('activerecord.attributes.reservation.updated_at') %></label><br/>&nbsp;
+        <%= @reservation.updated_at %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render partial: "layouts/record_changes", locals: { :@object => @reservation } %>
