@@ -40,4 +40,8 @@
   </div>
 </header>
 
-<%= render partial: 'layouts/start' %>
+<%#= render partial: 'layouts/start' %>
+
+<%= link_to t("devise.shared.links.sign_in"), new_session_path('user') unless current_user %><br />
+
+<%#= link_to 'Loginnn', new_user_session_path %>

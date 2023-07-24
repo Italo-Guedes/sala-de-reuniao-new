@@ -19,10 +19,10 @@ class Reservation < ApplicationRecord
 
   validate :horario_disponivel
 
-  def
-    if self.space.reservations.where("date_start= ?", self.date_start).where.not(id :self.id).exists?
+  def horario_disponivel
+    if self.space.reservations.where("date_start = ?", self.date_start).where.not(id: self.id).exists?
       errors.add(:date_start, "Já está ocupada.")
-    end
+    end    
   end
 
   def to_s

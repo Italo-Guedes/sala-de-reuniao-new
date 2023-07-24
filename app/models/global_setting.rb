@@ -27,7 +27,7 @@ class GlobalSetting < ApplicationRecord
       GlobalSetting.first ||
         GlobalSetting.create!(
           page_title: 'Sala de Reuniao',
-          page_subtitle: 'salaruniao',
+          page_subtitle: 'salareuniao',
           page_author: 'Italo',
           page_description: 'Um sistema implementado por Italo',
           menu_color: '#D12E5E',

@@ -2,13 +2,17 @@
 
 # SpacesController
 class SpacesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
+  before_action :set_reserva, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_admin!, only: [:destroy]
   
   load_and_authorize_resource
 
   # GET /spaces
   # GET /spaces.json
   def index
+    
+
     @q = @spaces.ransack(params[:q])
     @q.sorts = 'id desc' if @q.sorts.empty?
     @spaces = @q.result
@@ -23,7 +27,9 @@ class SpacesController < ApplicationController
   def show; end
 
   # GET /spaces/new
-  def new; end
+  def new
+    @space = Space.new
+  end
 
   # GET /spaces/1/edit
   def edit; end
@@ -31,6 +37,15 @@ class SpacesController < ApplicationController
   # POST /spaces
   # POST /spaces.json
   def create
+    # @space = Space.new(space_params)
+      
+    # if @space.save
+    #   redirect_to @space, notice: 'Espaço criado com sucesso!'
+    # else
+    #   render :new
+    # end
+
+
     respond_to do |format|
       if @space.save
         format.html { redirect_to @space, notice: "#{t('activerecord.models.space.one')} criado com sucesso" }
@@ -45,6 +60,13 @@ class SpacesController < ApplicationController
   # PATCH/PUT /spaces/1
   # PATCH/PUT /spaces/1.json
   def update
+    # if @space.update(space_params)
+    #   redirect_to @space, notice: 'Espaço atualizado com sucesso!'
+    # else
+    #   render :edit
+    # end
+
+
     respond_to do |format|
       if @space.update(space_params)
         format.html { redirect_to @space, notice: "#{t('activerecord.models.space.one')} atualizado com sucesso." }
