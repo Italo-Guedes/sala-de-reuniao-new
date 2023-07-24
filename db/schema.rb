@@ -56,13 +56,6 @@ ActiveRecord::Schema.define(version: 2023_07_23_153212) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "espacos", force: :cascade do |t|
-    t.string "nome"
-    t.text "descricao"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "global_settings", force: :cascade do |t|
     t.string "page_title", default: "Rdmapps"
     t.string "page_subtitle", default: "salareuniao"
@@ -87,16 +80,7 @@ ActiveRecord::Schema.define(version: 2023_07_23_153212) do
     t.index ["subject_type", "subject_id"], name: "index_notifications_on_subject_type_and_subject_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
-
-  create_table "reservas", force: :cascade do |t|
-    t.bigint "espaco_id", null: false
-    t.datetime "data_hora_inicio"
-    t.text "descricao"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["espaco_id"], name: "index_reservas_on_espaco_id"
-  end
-
+  
   create_table "reservations", force: :cascade do |t|
     t.bigint "space_id", null: false
     t.datetime "date_start"
@@ -172,7 +156,6 @@ ActiveRecord::Schema.define(version: 2023_07_23_153212) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "users"
-  add_foreign_key "notifications", "users"
-  add_foreign_key "reservas", "espacos"
+  add_foreign_key "notifications", "users"  
   add_foreign_key "reservations", "spaces"
 end

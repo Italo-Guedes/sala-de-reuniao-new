@@ -12,6 +12,7 @@
 #
 # Space model
 class Space < ApplicationRecord
+  has_many :reservations, dependent: :destroy
   include PgSearch::Model
   has_paper_trail
 
