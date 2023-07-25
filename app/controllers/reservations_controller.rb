@@ -81,3 +81,70 @@ class ReservationsController < ApplicationController
     )
   end
 end
+
+
+
+# # app/controllers/reservas_controller.rb
+# class ReservasController < ApplicationController
+#   before_action :authenticate_user!
+#   before_action :set_reserva, only: [:show, :edit, :update, :destroy]
+#   before_action :authorize_admin!, only: [:destroy]
+
+#   def index
+#     @reservas = Reserva.order(data_hora_inicio: :desc)
+#   end
+
+#   def show
+#   end
+
+#   def new
+#     @reserva = Reserva.new
+#   end
+
+#   def create
+#     @reserva = Reserva.new(reserva_params)
+#     @reserva.user = current_user
+
+#     if @reserva.save
+#       redirect_to @reserva, notice: 'Reserva criada com sucesso.'
+#     else
+#       render :new
+#     end
+#   end
+
+#   def edit
+#   end
+
+#   def update
+#     if @reserva.update(reserva_params)
+#       redirect_to @reserva, notice: 'Reserva atualizada com sucesso.'
+#     else
+#       render :edit
+#     end
+#   end
+
+#   def destroy
+#     if @reserva.data_hora_inicio > Time.now || current_user.admin?
+#       @reserva.destroy
+#       redirect_to reservas_path, notice: 'Reserva deletada com sucesso.'
+#     else
+#       redirect_to reservas_path, alert: 'Você não tem permissão para deletar esta reserva após o seu horário de início.'
+#     end
+#   end
+
+#   private
+
+#   def set_reserva
+#     @reserva = Reserva.find(params[:id])
+#   end
+
+#   def reserva_params
+#     params.require(:reserva).permit(:espaco_id, :data_hora_inicio, :descricao)
+#   end
+
+#   def authorize_admin!
+#     unless current_user.admin?
+#       redirect_to root_path, alert: 'Acesso não autorizado.'
+#     end
+#   end
+# end

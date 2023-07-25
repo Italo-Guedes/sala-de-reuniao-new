@@ -33,9 +33,9 @@ Rails.application.routes.draw do
       # put 'users' => 'devise/registrations#update', :as => 'user_registration'
     # end
 
-    #devise_for :users, controllers: { confirmations: 'users/confirmations' }
+    devise_for :users, controllers: { confirmations: 'users/confirmations' }
     
-    devise_for :users, controllers: { reservations: 'reservations' }
+    # devise_for :users, controllers: { reservations: 'reservations' }
 
 
     get 'home/index'

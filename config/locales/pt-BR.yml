@@ -102,6 +102,9 @@ pt-BR:
       comment:
         one: 'Comentário'
         other: 'Comentários'
+      reservation:
+        one: 'Reserva'
+        other: 'Reservas'
     attributes:
       comment:
         id: "Id"

@@ -27,9 +27,7 @@ class SpacesController < ApplicationController
   def show; end
 
   # GET /spaces/new
-  def new
-    @space = Space.new
-  end
+  def new; end
 
   # GET /spaces/1/edit
   def edit; end
@@ -105,3 +103,66 @@ class SpacesController < ApplicationController
     )
   end
 end
+
+
+
+# # app/controllers/espacos_controller.rb
+# class EspacosController < ApplicationController
+#   before_action :authenticate_user!, except: [:index, :show]
+#   before_action :set_espaco, only: [:show, :edit, :update, :destroy]
+#   before_action :authorize_admin!, except: [:index, :show]
+
+#   def index
+#     @espacos = Espaco.all
+#   end
+
+#   def show
+#   end
+
+#   def new
+#     @espaco = Espaco.new
+#   end
+
+#   def create
+#     @espaco = Espaco.new(espaco_params)
+
+#     if @espaco.save
+#       redirect_to @espaco, notice: 'Espaço criado com sucesso.'
+#     else
+#       render :new
+#     end
+#   end
+
+#   def edit
+#   end
+
+#   def update
+#     if @espaco.update(espaco_params)
+#       redirect_to @espaco, notice: 'Espaço atualizado com sucesso.'
+#     else
+#       render :edit
+#     end
+#   end
+
+#   def destroy
+#     @espaco.destroy
+#     redirect_to espacos_path, notice: 'Espaço deletado com sucesso.'
+#   end
+
+#   private
+
+#   def set_espaco
+#     @espaco = Espaco.find(params[:id])
+#   end
+
+#   def espaco_params
+#     params.require(:espaco).permit(:nome, :descricao)
+#   end
+
+#   def authorize_admin!
+#     unless current_user.admin?
+#       redirect_to root_path, alert: 'Acesso não autorizado.'
+#     end
+#   end
+# end
+
