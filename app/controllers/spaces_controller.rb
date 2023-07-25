@@ -37,13 +37,13 @@ class SpacesController < ApplicationController
   # POST /spaces
   # POST /spaces.json
   def create
-    # @space = Space.new(space_params)
+    @space = Space.new(space_params)
       
-    # if @space.save
-    #   redirect_to @space, notice: 'Espaço criado com sucesso!'
-    # else
-    #   render :new
-    # end
+    if @space.save
+       redirect_to @space, notice: 'Espaço criado com sucesso!'
+     else
+       render :new
+     end
 
 
     respond_to do |format|
@@ -60,11 +60,11 @@ class SpacesController < ApplicationController
   # PATCH/PUT /spaces/1
   # PATCH/PUT /spaces/1.json
   def update
-    # if @space.update(space_params)
-    #   redirect_to @space, notice: 'Espaço atualizado com sucesso!'
-    # else
-    #   render :edit
-    # end
+     if @space.update(space_params)
+       redirect_to @space, notice: 'Espaço atualizado com sucesso!'
+     else
+       render :edit
+     end
 
 
     respond_to do |format|
