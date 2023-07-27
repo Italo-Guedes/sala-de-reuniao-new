@@ -13,6 +13,8 @@ class ReservationsController < ApplicationController
     @reservations = @reservations.order(:id).search(params[:pgq], params[:page])
     return unless params[:select2]
 
+    #@reservation = Reservation.order(date_start: :desc)
+
     select2_render
   end
 

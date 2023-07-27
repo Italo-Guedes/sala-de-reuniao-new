@@ -11,4 +11,6 @@ module ApplicationHelper
   def square_thumb(attachment)
     attachment.variable? ? attachment.variant(auto_orient: true, resize: '200x200^', gravity: 'Center', crop: '200x200+0+0') : attachment if attachment&.present? || attachment&.any?
   end
+
+ 
 end

@@ -8,14 +8,15 @@ module Abilities
     def initialize(user)
       can %i[index mark_read mark_all_read], Notification, user_id: user.id
 
+      #Permissões para Espaços
+      can %i[read show], Space
+      
       #Permissões para reservas
       can %i[create], Reservation
       can %i[read], Reservation, user_id: user.id
       can :destroy, Reservation, user_id: user.id
       cannot %i[destroy], Reservation do |reservation|
         reservation.date_start <= Time.now
-
-      can %i[index show], Space
       end
     end
   end

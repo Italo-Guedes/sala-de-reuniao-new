@@ -10,15 +10,12 @@ module Abilities
       can :read, User
       
       #Permissões para space
-      can %i[create], Space
+      can %i[read create], Space
 
       #Permissões para Reservation
-      can %i[create destroy], Reservation
+      can %i[read create destroy], Reservation
 
-      can :destroy, Reservation do |reservation|      
-        user.has_cached_role?(:admin)
-      end
-
+      can :destroy, Reservation
 
       can %i[new create edit update destroy], User
       cannot %i[destroy], User, id: user.id

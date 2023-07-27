@@ -37,6 +37,16 @@
           <i class="zmdi zmdi-calendar"></i> Calendário
         <% end %>
       </li>
+      <li class="navigation__li">
+        <%= active_link_to reservations_path, active: [reservations: :index] do %>
+          <i class="zmdi zmdi-calendar-check"></i> Reservas
+        <% end %>
+      </li>
+      <li class="navigation__li">
+        <%= active_link_to spaces_path, active: [Spaces: :index] do %>
+          <i class="zmdi zmdi-globe"></i> Espaços
+        <% end %>
+      </li>
 
       <% if can? :manage, User %>
         <li class="navigation__li">

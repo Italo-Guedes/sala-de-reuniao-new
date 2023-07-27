@@ -45,7 +45,7 @@
             <% if controller_name == "versions" %>
               <td style="color: red"><%= reservation.version.created_at %></td>
             <% end %>
-              <td><%= reservation.space %></td>
+              <td><%= reservation.space.name %></td>
               <td><%= reservation.date_start %></td>
               <td><%= reservation.description %></td>
               <td class="actions-column actions">
