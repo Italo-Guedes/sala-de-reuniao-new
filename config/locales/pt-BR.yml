@@ -1,4 +1,6 @@
 pt-BR:
+  index:
+    space: "Espaço"
   will_paginate:
     page_gap: "..."
   "true": "Sim"
@@ -105,6 +107,9 @@ pt-BR:
       reservation:
         one: 'Reserva'
         other: 'Reservas'
+      space:
+        one: 'Espaço'
+        other: 'Espaços'
     attributes:
       comment:
         id: "Id"

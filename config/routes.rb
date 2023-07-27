@@ -68,6 +68,8 @@ Rails.application.routes.draw do
   get 'public', to: 'statics#public', as: 'public'
   get 'public/*other', to: 'statics#public'
 
+  #get 'spaces', to 'spaces#index'
+
 
   get '/:locale' => 'home#index', locale: /#{I18n.available_locales.join('|')}/
 end

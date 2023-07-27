@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_23_153212) do
+ActiveRecord::Schema.define(version: 2023_07_27_060528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -103,7 +103,9 @@ ActiveRecord::Schema.define(version: 2023_07_23_153212) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
     t.index ["space_id"], name: "index_reservations_on_space_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "roles", id: :serial, force: :cascade do |t|
@@ -175,4 +177,5 @@ ActiveRecord::Schema.define(version: 2023_07_23_153212) do
   add_foreign_key "notifications", "users"
   add_foreign_key "reservas", "espacos"
   add_foreign_key "reservations", "spaces"
+  add_foreign_key "reservations", "users"
 end

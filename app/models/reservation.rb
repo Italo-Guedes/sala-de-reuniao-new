@@ -10,10 +10,11 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  space_id    :bigint           not null
+#  user_id     :bigint           not null
 #
-# Reservation model
 class Reservation < ApplicationRecord
   belongs_to :space, required: true
+  belongs_to :user  
   include PgSearch::Model
   has_paper_trail
 

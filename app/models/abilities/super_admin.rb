@@ -7,6 +7,8 @@ module Abilities
 
     def initialize(user)
       can :manage, User
+      can :manage, Space
+      can :manage, Reservation
       cannot :destroy, User, id: user.id
       can :manage, GlobalSetting, id: GlobalSetting.instance.id
       can :read, :deleted_records

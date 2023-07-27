@@ -10,7 +10,6 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-# Space model
 class Space < ApplicationRecord
   has_many :reservations, dependent: :destroy
   include PgSearch::Model

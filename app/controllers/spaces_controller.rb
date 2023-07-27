@@ -2,16 +2,20 @@
 
 # SpacesController
 class SpacesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_reserva, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_admin!, only: [:destroy]
-  
   load_and_authorize_resource
+
+  before_action :authenticate_user!, except: [:index, :show]
+  # before_action :set_space, only: [:show, :edit, :update, :destroy]
+  #before_action :authorize_admin!, except: [:index, :show]
+
+  
+  
 
   # GET /spaces
   # GET /spaces.json
   def index
     
+  
 
     @q = @spaces.ransack(params[:q])
     @q.sorts = 'id desc' if @q.sorts.empty?
@@ -35,13 +39,13 @@ class SpacesController < ApplicationController
   # POST /spaces
   # POST /spaces.json
   def create
-    @space = Space.new(space_params)
+    # @space = Space.new(space_params)
       
-    if @space.save
-       redirect_to @space, notice: 'Espaço criado com sucesso!'
-     else
-       render :new
-     end
+    # if @space.save
+    #    redirect_to @space, notice: 'Espaço criado com sucesso!'
+    #  else
+    #    render :new
+    #  end
 
 
     respond_to do |format|
@@ -58,11 +62,11 @@ class SpacesController < ApplicationController
   # PATCH/PUT /spaces/1
   # PATCH/PUT /spaces/1.json
   def update
-     if @space.update(space_params)
-       redirect_to @space, notice: 'Espaço atualizado com sucesso!'
-     else
-       render :edit
-     end
+    #  if @space.update(space_params)
+    #    redirect_to @space, notice: 'Espaço atualizado com sucesso!'
+    #  else
+    #    render :edit
+    #  end
 
 
     respond_to do |format|
@@ -87,6 +91,14 @@ class SpacesController < ApplicationController
   end
 
   private
+
+  # def set_space
+  #   @space = Space.find(params[:id])
+  # end
+
+  # def authorize_admin!
+  #   params.require(:space).permit(:name, :description)
+  # end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def space_params
