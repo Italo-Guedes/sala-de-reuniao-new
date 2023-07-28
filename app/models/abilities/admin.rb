@@ -10,10 +10,10 @@ module Abilities
       can :read, User
       
       #Permissões para space
-      can %i[read create], Space
+      can %i[read update create destroy], Space
 
       #Permissões para Reservation
-      can %i[read create destroy], Reservation
+      can %i[read create update destroy], Reservation
 
       can :destroy, Reservation
 

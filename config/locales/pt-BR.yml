@@ -158,6 +158,17 @@ pt-BR:
         unconfirmed_email: E-mail não confirmado
         unlock_token: Token de desbloqueio
         updated_at: Atualizado em
+      reservation:
+        space: "Espaço:"
+        date_start: "Data e hora da reserva :"
+        description: "Descrição:"
+        created_at: "Reserva criada em:"
+        updated_at: "Reserva atualizada em:"
+      space:
+        name: Nome
+        description: Descrição
+        created_at: "Espaço criado em:"
+        updated_at: "Espaço atualizado em:"
   date:
     abbr_day_names:
     - Dom

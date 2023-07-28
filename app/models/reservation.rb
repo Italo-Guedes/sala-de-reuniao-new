@@ -18,10 +18,14 @@ class Reservation < ApplicationRecord
   include PgSearch::Model
   has_paper_trail
 
+  validates :space, presence: true
+  validates :date_start, presence: true
+  validates :description, presence: true
+
   validate :horario_disponivel
 
   def horario_disponivel
-    if self.space.reservations.where("date_start = ?", self.date_start).where.not(id: self.id).exists?
+    if space.present? && self.space.reservations.where("date_start = ?", self.date_start).where.not(id: self.id).exists?
       errors.add(:date_start, "Já está ocupada.")
     end    
   end
