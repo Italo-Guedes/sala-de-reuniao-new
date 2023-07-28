@@ -15,8 +15,8 @@ class Space < ApplicationRecord
   include PgSearch::Model
   has_paper_trail
 
-  validates :name, presence: true
-  validates :description, presence: true
+  validates :name, :description, presence: true
+  
 
   def to_s
     super

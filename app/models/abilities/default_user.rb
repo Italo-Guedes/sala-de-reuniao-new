@@ -12,12 +12,15 @@ module Abilities
       can %i[read show], Space
       
       #Permissões para reservas
-      can %i[create update], Reservation
+      can %i[create update], Reservation      
       can %i[read], Reservation, user_id: user.id
       can :destroy, Reservation, user_id: user.id
       cannot %i[destroy], Reservation do |reservation|
-        reservation.date_start <= Time.now
+        reservation.date_start <= Time.zone.now
       end
+      # cannot %i[update], Reservation do |reservation|
+      #   reservation.date_start < Time.zone.now
+      # end
     end
   end
 end
