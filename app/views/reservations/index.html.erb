@@ -40,8 +40,10 @@
             </tr>
           <% end %>
           <%# If we're in version controller, we need to reify each element %>
-          <% (controller_name == 'versions' ? @reservations.map(&:reify) : @reservations).each do |reservation| %>
-            <tr>
+          <%#= (controller_name == 'versions' ? @reservations.map(&:reify) : @reservations).each do |reservation| %>          
+          <% @reservations.each do |reservation| %>
+
+            <tr class="<%= past_reservation_class(reservation) %>">
             <% if controller_name == "versions" %>
               <td style="color: red"><%= reservation.version.created_at %></td>
             <% end %>
@@ -53,7 +55,7 @@
                 <%= link_to '', edit_reservation_path(reservation), title: t("activerecord.link.edit"), class: "zmdi zmdi-edit actions__item" if can? :edit, reservation %>
                 <%= link_to '', reservation, title: t("activerecord.link.destroy"), class: "zmdi zmdi-delete actions__item", method: :delete, data: { confirm: t('activerecord.link.destroy_confirm') } if can? :destroy, reservation %>
               </td>
-            </tr>
+            </tr>            
           <% end %>
         </tbody>
       </table>
@@ -68,3 +70,6 @@
   </div>
   <br>
 </div>
+
+
+

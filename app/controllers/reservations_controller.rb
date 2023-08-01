@@ -2,6 +2,7 @@
 
 # ReservationsController
 class ReservationsController < ApplicationController
+  include ReservationsHelper
   load_and_authorize_resource
 
   # GET /reservations
