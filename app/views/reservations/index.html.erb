@@ -7,7 +7,6 @@
       </small>
     <% end %>
   </h1>
-
   <div class="actions">
     <%= link_to '', reservations_path, title: t('activerecord.link.back_to_list'), class: 'actions__item zmdi zmdi-arrow-left' if controller_name == 'versions' %>
     <%= link_to '', '', title: t('activerecord.link.refresh'), class: 'actions__item zmdi zmdi-refresh-alt' %>
@@ -40,22 +39,23 @@
             </tr>
           <% end %>
           <%# If we're in version controller, we need to reify each element %>
-          <%#= (controller_name == 'versions' ? @reservations.map(&:reify) : @reservations).each do |reservation| %>          
-          <% @reservations.each do |reservation| %>
-
-            <tr class="<%= past_reservation_class(reservation) %>">
-            <% if controller_name == "versions" %>
-              <td style="color: red"><%= reservation.version.created_at %></td>
-            <% end %>
-              <td><%= reservation.space.name %></td>
-              <td><%= reservation.date_start %></td>
-              <td><%= reservation.description %></td>
-              <td class="actions-column actions">
-                <%= link_to '', (reservation.version.present? ? show_version_path(model_name: "reservations", id: reservation.version.id) : reservation), title: t("activerecord.link.details"), class: "zmdi zmdi-search actions__item" %>
-                <%= link_to '', edit_reservation_path(reservation), title: t("activerecord.link.edit"), class: "zmdi zmdi-edit actions__item" if can? :edit, reservation %>
-                <%= link_to '', reservation, title: t("activerecord.link.destroy"), class: "zmdi zmdi-delete actions__item", method: :delete, data: { confirm: t('activerecord.link.destroy_confirm') } if can? :destroy, reservation %>
-              </td>
-            </tr>            
+          <% (controller_name == 'versions' ? @reservations.map(&:reify) : @reservations).each do |reservation| %>          
+            <%# @reservations.each do |reservation| %>
+              <% past_reservation_class = reservation.date_start < Time.zone.now ? 'past-reservation' : '' %>
+              <tr class="<%= past_reservation_class %>">
+              <% if controller_name == "versions" %>
+                <td style="color: red"><%= reservation.version.created_at %></td>
+              <% end %>
+                <td><%= reservation.space.name %></td>
+                <td><%= reservation.date_start %></td>
+                <td><%= reservation.description %></td>
+                <td class="actions-column actions">
+                  <%= link_to '', (reservation.version.present? ? show_version_path(model_name: "reservations", id: reservation.version.id) : reservation), title: t("activerecord.link.details"), class: "zmdi zmdi-search actions__item" %>
+                  <%= link_to '', edit_reservation_path(reservation), title: t("activerecord.link.edit"), class: "zmdi zmdi-edit actions__item" if can? :edit, reservation %>
+                  <%= link_to '', reservation, title: t("activerecord.link.destroy"), class: "zmdi zmdi-delete actions__item", method: :delete, data: { confirm: t('activerecord.link.destroy_confirm') } if can? :destroy, reservation %>
+                </td>
+              </tr> 
+            <% #end %>
           <% end %>
         </tbody>
       </table>
@@ -71,5 +71,9 @@
   <br>
 </div>
 
-
+<style>
+  .past-reservation {
+    background-color: #d3a9c7 !important;
+  }
+</style>
 

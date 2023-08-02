@@ -18,10 +18,18 @@ class Reservation < ApplicationRecord
   include PgSearch::Model
   has_paper_trail
 
-  validates :date_start, uniqueness: {scope: :space_id}
+  validates :date_start, uniqueness: {scope: :space_id} #=validate :horario_disponivel
   validates :space, presence: true
   validates :date_start, presence: true
   validates :description, presence: true
+  validate :data_reserva_anterior
+
+
+  def data_reserva_anterior
+    if date_start.present? && date_start < Time.zone.now
+      errors.add(:date_start, "Não pode ser uma data passada")
+    end
+  end
 
   #validate :horario_disponivel
 
